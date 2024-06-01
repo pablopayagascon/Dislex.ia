@@ -48,8 +48,8 @@ def levenshtein(s1, s2):
 
 
 # image to text API authentication
-subscription_key_imagetotext = "1780f5636509411da43040b70b5d2e22"
-endpoint_imagetotext = "https://prana-------------v.cognitiveservices.azure.com/"
+subscription_key_imagetotext = "c43eb04f-36a9-4403-a404-f096ae7e58e8"
+endpoint_imagetotext = "https://dislexia.cognitiveservices.azure.com/"
 computervision_client = ComputerVisionClient(
     endpoint_imagetotext, CognitiveServicesCredentials(subscription_key_imagetotext))
 
