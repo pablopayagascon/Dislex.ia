@@ -275,7 +275,7 @@ Though there's no cure for dyslexia, early assessment and intervention result in
 Sometimes dyslexia goes undiagnosed for years and isn't recognized until adulthood, but it's never 
 too late to seek help.""")
 
-    img1 = Image.open("images\img1.jpg")
+    img1 = Image.open("images/img1.jpg")
     st.image(img1)
 
     st.subheader("Dyslexia- India")
@@ -635,11 +635,11 @@ with tab5:
     dyslexia or not. 
     """)
     st.subheader("Average corrections is less for a non-dyslexic child when compared to dyslexic child")
-    st.image("images\percentage_of_corrections.jpg")
+    st.image("images/percentage_of_corrections.jpg")
     
     st.subheader("Spelling accuracy for a dyslexic and a non-dyslexic child")
-    st.image("images\spelling_accuracy.jpg")
+    st.image("images/spelling_accuracy.jpg")
     
     st.subheader("Average Phonetic accuracy comparision between a dyslexic and a non-dyslexic child ")
-    st.image("images\percentage_of_phonetic_accuraccy.jpg")
+    st.image("images/percentage_of_phonetic_accuraccy.jpg")
 
