@@ -56,8 +56,8 @@ computervision_client = ComputerVisionClient(
 # '''-------------------------------------------------------------------------------------------------------------------------------------------------------------------------'''
 
 # text correction API authentication
-api_key_textcorrection = "7aba4995897b4dcaa86c34ddb82a1ecf"
-endpoint_textcorrection = "https://api.bing.microsoft.com/v7.0/SpellCheck"
+api_key_textcorrection = "eee751bde72141469459e89792a53815"
+endpoint_textcorrection = "https://dislexia.cognitiveservices.azure.com/"
 
 # '''-------------------------------------------------------------------------------------------------------------------------------------------------------------------------'''
 
