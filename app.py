@@ -326,12 +326,12 @@ with tab3:
 
     def get_10_word_array(level: int):
         if (level == 1):
-            voc = pd.read_csv("data\intermediate_voc.csv")
+            voc = pd.read_csv("data/intermediate_voc.csv")
             arr = voc.squeeze().to_numpy()
             selected_list = random.sample(list(arr), 10)
             return selected_list
         elif(level == 2):
-            voc = pd.read_csv("data\intermediate_voc.csv")
+            voc = pd.read_csv("data/intermediate_voc.csv")
             # return (type(voc))
             arr = voc.squeeze().to_numpy()
             selected_list = random.sample(list(arr), 10) 
@@ -527,13 +527,13 @@ with tab4:
     
     def get_10_word_array(level: int):
         if (level == 1):
-            voc = pd.read_csv("data\intermediate_voc.csv")
+            voc = pd.read_csv("data/intermediate_voc.csv")
             arr = voc.squeeze().to_numpy()
             selected_list = random.sample(list(arr), 10)
             return selected_list
         
         elif(level == 2):
-            voc = pd.read_csv("data\elementary_voc.csv")
+            voc = pd.read_csv("data/elementary_voc.csv")
             arr = voc.squeeze().to_numpy()
             selected_list = random.sample(list(arr), 10) 
             return selected_list
