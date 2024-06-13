@@ -9,6 +9,7 @@ import random
 import speech_recognition as sr
 import pyttsx3
 import time
+import pyaudio
 import eng_to_ipa as ipa
 
 
