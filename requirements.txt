@@ -10,5 +10,5 @@ pyttsx3
 eng_to_ipa
 requests
 pandas
-
+pyaudio
 
