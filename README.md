@@ -42,3 +42,4 @@ This folder contains the training and evaluation of various machine learning mod
 
 ### app.py:
 this file is the main file of the web application. This file has the logic for extracting all the required features from the uploaded image and making a predicton using the pretrained decision tree model.
+hola
