@@ -160,7 +160,7 @@ def generate_csv(folder: str, label: int, csv_name: str):
         arr.append(feature_array)
         print(feature_array)
     print(arr)
-    pd.DataFrame(arr, columns=["spelling_accuracy", "gramatical_accuracy", " percentage_of_corrections", "presence_of_dyslexia"]).to_csv("test1.csv")
+    pd.DataFrame(arr, columns=["spelling_accuracy", "gramatical_accuracy", " percentage_of_corrections", "presence_of_dyslexia"]).to_csv(csv_name)
 
 # '''-------------------------------------------------------------------------------------------------------------------------------------------------------------------------'''
 
@@ -587,5 +587,7 @@ def score(input):
 #     st.image("images/percentage_of_phonetic_accuraccy.jpg")
 
 # -------------------------------------------
-generate_csv(r'C:\Users\pablo\OneDrive\Documentos\GitHub\Sistemas interactivos UI\data\dyslexic', 0, "dislexia")
+generate_csv(r'C:\Users\pablo\OneDrive\Documentos\GitHub\Sistemas interactivos UI\data\dyslexic', 1, "dislexia")
+generate_csv(r'C:\Users\pablo\OneDrive\Documentos\GitHub\Sistemas interactivos UI\data\dyslexic', 0, "no-dislexia")
+
 
