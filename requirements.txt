@@ -10,5 +10,4 @@ pyttsx3
 eng_to_ipa
 requests
 pandas
-pyaudio==0.2.14
 
