@@ -182,8 +182,39 @@ def score(input):
 
 
 #'''-------------------------------------------------------------------------------------------------------------------------------------------------------------------------'''
+from PIL import Image
+import os
 
-generate_csv(r'C:\Users\pablo\OneDrive\Documentos\GitHub\Sistemas interactivos UI\data\dyslexic', 1, "dislexia")
-generate_csv(r'C:\Users\pablo\OneDrive\Documentos\GitHub\Sistemas interactivos UI\data\non_dyslexic', 0, "no-dislexia")
+def recortar_imagenes_en_carpeta(carpeta):
+    for filename in os.listdir(carpeta):
+        if filename.endswith(".jpg") or filename.endswith(".png"):  # Filtrar solo archivos de imagen
+            path_imagen = os.path.join(carpeta, filename)
+            try:
+                imagen = Image.open(path_imagen)
+
+                # Dimensiones de la imagen original
+                ancho_original, alto_original = imagen.size
+
+                # Coordenadas para el recorte
+                left = 0
+                upper = alto_original - 1060
+                right = ancho_original
+                lower = alto_original
+
+                # Recortar la imagen
+                imagen_recortada = imagen.crop((left, upper, right, lower))
+
+                # Guardar la imagen recortada (sobrescribir la original)
+                imagen_recortada.save(path_imagen)
+
+                print(f"Imagen recortada y guardada: {filename}")
+
+            except Exception as e:
+                print(f"Error al procesar la imagen {filename}: {str(e)}")
 
 
+#'''-------------------------------------------------------------------------------------------------------------------------------------------------------------------------'''
+# generate_csv(r'C:\Users\pablo\OneDrive\Documentos\GitHub\Sistemas interactivos UI\data\dyslexic', 1, "dislexia")
+# generate_csv(r'C:\Users\pablo\OneDrive\Documentos\GitHub\Sistemas interactivos UI\data\non_dyslexic', 0, "no-dislexia")
+
+recortar_imagenes_en_carpeta(r'C:\Users\pablo\OneDrive\Documentos\GitHub\Sistemas interactivos UI\model_training\hsf_1')
