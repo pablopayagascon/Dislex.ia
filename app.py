@@ -9,9 +9,7 @@ import random
 import speech_recognition as sr
 import pyttsx3
 import time
-# import pyaudio
 import eng_to_ipa as ipa
-
 
 from azure.cognitiveservices.vision.computervision import ComputerVisionClient
 from azure.cognitiveservices.vision.computervision.models import OperationStatusCodes
@@ -193,7 +191,6 @@ def score(input):
 
 #'''-------------------------------------------------------------------------------------------------------------------------------------------------------------------------'''
 from PIL import Image
-import os
 
 def recortar_imagenes_en_carpeta(carpeta):
     for filename in os.listdir(carpeta):
@@ -226,5 +223,5 @@ def recortar_imagenes_en_carpeta(carpeta):
 #'''-------------------------------------------------------------------------------------------------------------------------------------------------------------------------'''
 # generate_csv(r'C:\Users\pablo\OneDrive\Documentos\GitHub\Sistemas interactivos UI\data\dyslexic', 1, "dislexia")
 # generate_csv(r'C:\Users\pablo\OneDrive\Documentos\GitHub\Sistemas interactivos UI\data\non_dyslexic', 0, "no-dislexia")
-generate_csv(r'C:\Users\pablo\OneDrive\Documentos\GitHub\Sistemas interactivos UI\model_training\hsf_1', 0, "test-mix-dislexia")
+# generate_csv(r'C:\Users\pablo\OneDrive\Documentos\GitHub\Sistemas interactivos UI\model_training\hsf_1', 0, "test-mix-dislexia")
 # recortar_imagenes_en_carpeta(r'C:\Users\pablo\OneDrive\Documentos\GitHub\Sistemas interactivos UI\model_training\hsf_1')
