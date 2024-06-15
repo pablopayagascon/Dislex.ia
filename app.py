@@ -9,7 +9,7 @@ import random
 import speech_recognition as sr
 import pyttsx3
 import time
-import pyaudio
+# import pyaudio
 import eng_to_ipa as ipa
 
 
@@ -137,61 +137,61 @@ def percentage_of_corrections(extracted_text):
 # percentage of phonetic accuracy
 
 
-def percentage_of_phonetic_accuraccy(extracted_text: str):
-    soundex = Soundex()
-    metaphone = Metaphone()
-    caverphone = Caverphone()
-    nysiis = NYSIIS()
-    spell_corrected = TextBlob(extracted_text).correct()
+# def percentage_of_phonetic_accuraccy(extracted_text: str):
+#     soundex = Soundex()
+#     metaphone = Metaphone()
+#     caverphone = Caverphone()
+#     nysiis = NYSIIS()
+#     spell_corrected = TextBlob(extracted_text).correct()
 
-    extracted_text_list = extracted_text.split(" ")
-    extracted_phonetics_soundex = [soundex.encode(
-        string) for string in extracted_text_list]
-    extracted_phonetics_metaphone = [metaphone.encode(
-        string) for string in extracted_text_list]
-    extracted_phonetics_caverphone = [caverphone.encode(
-        string) for string in extracted_text_list]
-    extracted_phonetics_nysiis = [nysiis.encode(
-        string) for string in extracted_text_list]
+#     extracted_text_list = extracted_text.split(" ")
+#     extracted_phonetics_soundex = [soundex.encode(
+#         string) for string in extracted_text_list]
+#     extracted_phonetics_metaphone = [metaphone.encode(
+#         string) for string in extracted_text_list]
+#     extracted_phonetics_caverphone = [caverphone.encode(
+#         string) for string in extracted_text_list]
+#     extracted_phonetics_nysiis = [nysiis.encode(
+#         string) for string in extracted_text_list]
 
-    extracted_soundex_string = " ".join(extracted_phonetics_soundex)
-    extracted_metaphone_string = " ".join(extracted_phonetics_metaphone)
-    extracted_caverphone_string = " ".join(extracted_phonetics_caverphone)
-    extracted_nysiis_string = " ".join(extracted_phonetics_nysiis)
+#     extracted_soundex_string = " ".join(extracted_phonetics_soundex)
+#     extracted_metaphone_string = " ".join(extracted_phonetics_metaphone)
+#     extracted_caverphone_string = " ".join(extracted_phonetics_caverphone)
+#     extracted_nysiis_string = " ".join(extracted_phonetics_nysiis)
 
-    spell_corrected_list = spell_corrected.split(" ")
-    spell_corrected_phonetics_soundex = [
-        soundex.encode(string) for string in spell_corrected_list]
-    spell_corrected_phonetics_metaphone = [
-        metaphone.encode(string) for string in spell_corrected_list]
-    spell_corrected_phonetics_caverphone = [
-        caverphone.encode(string) for string in spell_corrected_list]
-    spell_corrected_phonetics_nysiis = [nysiis.encode(
-        string) for string in spell_corrected_list]
+#     spell_corrected_list = spell_corrected.split(" ")
+#     spell_corrected_phonetics_soundex = [
+#         soundex.encode(string) for string in spell_corrected_list]
+#     spell_corrected_phonetics_metaphone = [
+#         metaphone.encode(string) for string in spell_corrected_list]
+#     spell_corrected_phonetics_caverphone = [
+#         caverphone.encode(string) for string in spell_corrected_list]
+#     spell_corrected_phonetics_nysiis = [nysiis.encode(
+#         string) for string in spell_corrected_list]
 
-    spell_corrected_soundex_string = " ".join(
-        spell_corrected_phonetics_soundex)
-    spell_corrected_metaphone_string = " ".join(
-        spell_corrected_phonetics_metaphone)
-    spell_corrected_caverphone_string = " ".join(
-        spell_corrected_phonetics_caverphone)
-    spell_corrected_nysiis_string = " ".join(spell_corrected_phonetics_nysiis)
+#     spell_corrected_soundex_string = " ".join(
+#         spell_corrected_phonetics_soundex)
+#     spell_corrected_metaphone_string = " ".join(
+#         spell_corrected_phonetics_metaphone)
+#     spell_corrected_caverphone_string = " ".join(
+#         spell_corrected_phonetics_caverphone)
+#     spell_corrected_nysiis_string = " ".join(spell_corrected_phonetics_nysiis)
 
-    soundex_score = (len(extracted_soundex_string)-(levenshtein(extracted_soundex_string,
-                     spell_corrected_soundex_string)))/(len(extracted_soundex_string)+1)
-    # print(spell_corrected_soundex_string)
-    # print(extracted_soundex_string)
-    # print(soundex_score)
-    metaphone_score = (len(extracted_metaphone_string)-(levenshtein(extracted_metaphone_string,
-                       spell_corrected_metaphone_string)))/(len(extracted_metaphone_string)+1)
-    # print(metaphone_score)
-    caverphone_score = (len(extracted_caverphone_string)-(levenshtein(extracted_caverphone_string,
-                        spell_corrected_caverphone_string)))/(len(extracted_caverphone_string)+1)
-    # print(caverphone_score)
-    nysiis_score = (len(extracted_nysiis_string)-(levenshtein(extracted_nysiis_string,
-                    spell_corrected_nysiis_string)))/(len(extracted_nysiis_string)+1)
-    # print(nysiis_score)
-    return ((0.5*caverphone_score + 0.2*soundex_score + 0.2*metaphone_score + 0.1 * nysiis_score))*100
+#     soundex_score = (len(extracted_soundex_string)-(levenshtein(extracted_soundex_string,
+#                      spell_corrected_soundex_string)))/(len(extracted_soundex_string)+1)
+#     # print(spell_corrected_soundex_string)
+#     # print(extracted_soundex_string)
+#     # print(soundex_score)
+#     metaphone_score = (len(extracted_metaphone_string)-(levenshtein(extracted_metaphone_string,
+#                        spell_corrected_metaphone_string)))/(len(extracted_metaphone_string)+1)
+#     # print(metaphone_score)
+#     caverphone_score = (len(extracted_caverphone_string)-(levenshtein(extracted_caverphone_string,
+#                         spell_corrected_caverphone_string)))/(len(extracted_caverphone_string)+1)
+#     # print(caverphone_score)
+#     nysiis_score = (len(extracted_nysiis_string)-(levenshtein(extracted_nysiis_string,
+#                     spell_corrected_nysiis_string)))/(len(extracted_nysiis_string)+1)
+#     # print(nysiis_score)
+#     return ((0.5*caverphone_score + 0.2*soundex_score + 0.2*metaphone_score + 0.1 * nysiis_score))*100
 
 # '''-------------------------------------------------------------------------------------------------------------------------------------------------------------------------'''
 
@@ -218,8 +218,7 @@ def generate_csv(folder: str, label: int, csv_name: str):
         arr.append(feature_array)
         print(feature_array)
     print(arr)
-    pd.DataFrame(arr, columns=["spelling_accuracy", "gramatical_accuracy", " percentage_of_corrections",
-                 "percentage_of_phonetic_accuraccy", "presence_of_dyslexia"]).to_csv("test1.csv")
+    pd.DataFrame(arr, columns=["spelling_accuracy", "gramatical_accuracy", " percentage_of_corrections", "presence_of_dyslexia"]).to_csv("test1.csv")
 
 # '''-------------------------------------------------------------------------------------------------------------------------------------------------------------------------'''
 
