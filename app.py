@@ -19,8 +19,6 @@ from msrest.authentication import CognitiveServicesCredentials
 
 import time
 
-from abydos.phonetic import Soundex, Metaphone, Caverphone, NYSIIS
-
 # '''-------------------------------------------------------------------------------------------------------------------------------------------------------------------------'''
 
 
@@ -105,12 +103,18 @@ def spelling_accuracy(extracted_text):
 
 def gramatical_accuracy(extracted_text):
     spell_corrected = TextBlob(extracted_text).correct()
-    correct_text = my_tool.correct(spell_corrected)
-    extracted_text_set = set(spell_corrected.split(" "))
-    correct_text_set = set(correct_text.split(" "))
-    n = max(len(extracted_text_set - correct_text_set),
-            len(correct_text_set - extracted_text_set))
-    return ((len(spell_corrected) - n)/(len(spell_corrected)+1))*100
+    if not spell_corrected:
+        return "N/A 3"  # Devuelve 3 si el texto corregido está vacío
+    try:
+        correct_text = my_tool.correct(spell_corrected)
+        extracted_text_set = set(spell_corrected.split(" "))
+        correct_text_set = set(correct_text.split(" "))
+        n = max(len(extracted_text_set - correct_text_set),
+                len(correct_text_set - extracted_text_set))
+        return ((len(spell_corrected) - n)/(len(spell_corrected)+1))*100
+    except language_tool_python.utils.LanguageToolError as e:
+        print(f"Error en la verificación gramatical: {str(e)}")
+        return "N/A 2"  # Devuelve 2 si hay un error en la verificación gramatical
 
 # '''-------------------------------------------------------------------------------------------------------------------------------------------------------------------------'''
 
@@ -130,7 +134,13 @@ def percentage_of_corrections(extracted_text):
     response = requests.post(endpoint_textcorrection,
                              headers=headers, params=params, data=data)
     json_response = response.json()
-    return len(json_response['flaggedTokens'])/len(extracted_text.split(" "))*100
+    
+    # Comprobar si 'flaggedTokens' está en la respuesta
+    if 'flaggedTokens' in json_response:
+        return len(json_response['flaggedTokens']) / len(extracted_text.split(" ")) * 100
+    else:
+        print("Respuesta del API no contiene 'flaggedTokens'")
+        return "N/A"  # 4 cualquier otro valor por defecto que consideres apropiado
 
 # '''-------------------------------------------------------------------------------------------------------------------------------------------------------------------------'''
 
@@ -216,5 +226,5 @@ def recortar_imagenes_en_carpeta(carpeta):
 #'''-------------------------------------------------------------------------------------------------------------------------------------------------------------------------'''
 # generate_csv(r'C:\Users\pablo\OneDrive\Documentos\GitHub\Sistemas interactivos UI\data\dyslexic', 1, "dislexia")
 # generate_csv(r'C:\Users\pablo\OneDrive\Documentos\GitHub\Sistemas interactivos UI\data\non_dyslexic', 0, "no-dislexia")
-
-recortar_imagenes_en_carpeta(r'C:\Users\pablo\OneDrive\Documentos\GitHub\Sistemas interactivos UI\model_training\hsf_1')
+generate_csv(r'C:\Users\pablo\OneDrive\Documentos\GitHub\Sistemas interactivos UI\model_training\hsf_1', 0, "test-mix-dislexia")
+# recortar_imagenes_en_carpeta(r'C:\Users\pablo\OneDrive\Documentos\GitHub\Sistemas interactivos UI\model_training\hsf_1')
