@@ -14,8 +14,6 @@ from azure.cognitiveservices.vision.computervision import ComputerVisionClient
 from azure.cognitiveservices.vision.computervision.models import OperationStatusCodes
 from msrest.authentication import CognitiveServicesCredentials
 
-import time
-
 # '''-------------------------------------------------------------------------------------------------------------------------------------------------------------------------'''
 
 
@@ -101,7 +99,7 @@ def spelling_accuracy(extracted_text):
 def gramatical_accuracy(extracted_text):
     spell_corrected = TextBlob(extracted_text).correct()
     if not spell_corrected:
-        return "N/A 3"  # Devuelve 3 si el texto corregido está vacío
+        return "N/A 3"  # Returns 3 if the corrected text is empty
     try:
         correct_text = my_tool.correct(spell_corrected)
         extracted_text_set = set(spell_corrected.split(" "))
@@ -111,7 +109,7 @@ def gramatical_accuracy(extracted_text):
         return ((len(spell_corrected) - n)/(len(spell_corrected)+1))*100
     except language_tool_python.utils.LanguageToolError as e:
         print(f"Error en la verificación gramatical: {str(e)}")
-        return "N/A 2"  # Devuelve 2 si hay un error en la verificación gramatical
+        return "N/A 2"  # Returns 2 if there is an error in the grammar check.
 
 # '''-------------------------------------------------------------------------------------------------------------------------------------------------------------------------'''
 
@@ -132,12 +130,12 @@ def percentage_of_corrections(extracted_text):
                              headers=headers, params=params, data=data)
     json_response = response.json()
     
-    # Comprobar si 'flaggedTokens' está en la respuesta
+    # Check if 'flaggedTokens' is in the response
     if 'flaggedTokens' in json_response:
         return len(json_response['flaggedTokens']) / len(extracted_text.split(" ")) * 100
     else:
         print("Respuesta del API no contiene 'flaggedTokens'")
-        return "N/A"  # 4 cualquier otro valor por defecto que consideres apropiado
+        return "N/A"  # 4 any other default value you consider appropriate
 
 # '''-------------------------------------------------------------------------------------------------------------------------------------------------------------------------'''
 
@@ -172,36 +170,36 @@ def generate_csv(folder: str, label: int, csv_name: str):
 
 from PIL import Image
 
-def recortar_imagenes_en_carpeta(carpeta):
-    for filename in os.listdir(carpeta):
-        if filename.endswith(".jpg") or filename.endswith(".png"):  # Filtrar solo archivos de imagen
-            path_imagen = os.path.join(carpeta, filename)
+def crop_images_in_folder(folder):
+    for filename in os.listdir(folder):
+        if filename.endswith(".jpg") or filename.endswith(".png"):  # Filter image files only
+            path_imagen = os.path.join(folder, filename)
             try:
                 imagen = Image.open(path_imagen)
 
-                # Dimensiones de la imagen original
+                # Dimensions of the original image
                 ancho_original, alto_original = imagen.size
 
-                # Coordenadas para el recorte
+                # Coordinates for trimming
                 left = 0
                 upper = alto_original - 1060
                 right = ancho_original
                 lower = alto_original
 
-                # Recortar la imagen
+                # Crop the image
                 imagen_recortada = imagen.crop((left, upper, right, lower))
 
-                # Guardar la imagen recortada (sobrescribir la original)
+                # Save cropped image (overwrite original)
                 imagen_recortada.save(path_imagen)
 
-                print(f"Imagen recortada y guardada: {filename}")
+                print(f"Image cropped and saved: {filename}")
 
             except Exception as e:
-                print(f"Error al procesar la imagen {filename}: {str(e)}")
+                print(f"Error processing the image {filename}: {str(e)}")
 
 
 #'''-------------------------------------------------------------------------------------------------------------------------------------------------------------------------'''
 # generate_csv(r'C:\Users\pablo\OneDrive\Documentos\GitHub\Sistemas interactivos UI\data\dyslexic', 1, "dislexia")
 # generate_csv(r'C:\Users\pablo\OneDrive\Documentos\GitHub\Sistemas interactivos UI\data\non_dyslexic', 0, "no-dislexia")
 # generate_csv(r'C:\Users\pablo\OneDrive\Documentos\GitHub\Sistemas interactivos UI\model_training\hsf_1', 0, "test-mix-dislexia")
-# recortar_imagenes_en_carpeta(r'C:\Users\pablo\OneDrive\Documentos\GitHub\Sistemas interactivos UI\model_training\hsf_1')
+# crop_images_in_folder(r'C:\Users\pablo\OneDrive\Documentos\GitHub\Sistemas interactivos UI\model_training\hsf_1')
